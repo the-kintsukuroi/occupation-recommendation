@@ -1,8 +1,16 @@
 # srcs/streamlit_app/app.py
+import sys
 import streamlit as st
 import pandas as pd
 import numpy as np
 import requests, os
+from elasticsearch import Elasticsearch
+sys.path.append('srcs')
+from streamlit_app import utils, templates
+
+INDEX = 'qp-name'
+DOMAIN = '0.0.0.0'
+es = Elasticsearch(host=DOMAIN)
 
 # -- Set page config
 apptitle = 'Jobs for You'
@@ -31,6 +39,7 @@ education_level_def = { 'Education Level':['Unable to read or write', 'No formal
      'completed a PhD degree in any field', 'Other']
 }
 education_level_def = pd.DataFrame(education_level_def)
+
 sector_def = {'Sector':['Aerospace & Aviation', 'Agriculture',
        'Apparel, Made-Ups & Home Furnishing', 'Automotive',
        'Beauty & Wellness', 'Banking, Financial Services and Insurance',
@@ -86,5 +95,16 @@ with get_education_expander:
     education_form.write('Please select the highest cleared level')
     education_form.dataframe(education_level_def)
 
-
+get_occupations_expander = st.expander("Check out these occupations", expanded=False)
+with get_occupations_expander:
+    results = utils.index_search(education_level, sector_selected)
+    total_hits = len(results['hits']['hits'])
+    # show number of results and time taken
+    st.write(templates.number_of_results(total_hits, results['took'] / 1000), unsafe_allow_html=True)
     
+    # search results
+    for i in range(len(results['hits']['hits'])):
+        result = results['hits']['hits'][i]
+        res = result['_source']['QP Name']
+        st.write(templates.search_result(i, res), unsafe_allow_html=True)
+
