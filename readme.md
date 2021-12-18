@@ -1,25 +1,10 @@
 Downloaded from - https://nsdcindia.org/learning-resources
 
-Columns dropped - 
-    Job Roles Readiness for CSSM	
-    Job Roles in PMKVY CSSM (FY 2018-20)	
-    89 Curriculum/Content	
-    CSSM MES	
-    Available on SMART Portal	
-    Next Review Date	
-    Next Review Date	
-    QRC Approval Date	
-    MC Approval/Upload Date	
-    NSQC Approval Status	
-    DLI Status	
-    QP Uploaded on NSDC Website	NAPS Paired & Embedded QPs	
-    QP Retirement Planned (Yes/Tentative)	
-    Retirement Announcement Date	
-    Retirement Not Before Date	
-    Remarks	"CSCM (2018-20)
-    Standalone"	"CSCM (2018-20)
-    Apprenticeship (QP1/QP2/Embedded"	"CSCM (2018-20)
-    PMKK"	"CSCM (2018-20)
-    PMKVY Reallocation"	"CSCM (2018-20)
-    Standalone (w/o Content & Curriculum)"	
-    Awaiting NSQC Approval
+How it works:
+1. The Government of India publishes National Occupational Standards for each Qualification package(Occupation) - download from source
+2. Each Qualification Package has details about the minimum requirements - use web scraping and pdf downloader to analyse text(not in this project)
+3. We store these requirements in JSON documents in Elasticsearch using Python Client - bulk-ingest.py
+4. The user inputs are queried with a full-text query with text analyser in Elasticsearch database - utils.py
+5. The queried results are rendered using HTML and served to the user on the Streamlit App - templates.py
+6. Streamlit App - srcs/streamlit_app.py
+7. Docker and other files to publish and deploy
