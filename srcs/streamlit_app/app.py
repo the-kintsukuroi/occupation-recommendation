@@ -23,7 +23,7 @@ st.set_page_config(
         }
 ) #TODO page_icon and menu_items
 
-# Title the app
+# Title of the app
 st.title(apptitle)
 
 # Define the education levels
