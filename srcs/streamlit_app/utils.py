@@ -2,7 +2,10 @@
 from elasticsearch import Elasticsearch
 from datetime import date
 
-DOMAIN = 'es'
+#DOMAIN = 'our.es.server.name:9200'
+DOMAIN = '0.0.0.0'
+#DOMAIN='es'
+
 es = Elasticsearch(host=DOMAIN)
 
 def index_search(education_level, sector_selected):

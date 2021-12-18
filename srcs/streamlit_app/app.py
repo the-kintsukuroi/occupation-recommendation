@@ -8,8 +8,7 @@ sys.path.append('srcs')
 from streamlit_app import utils, templates
 
 INDEX = 'qp-name'
-DOMAIN = 'es'
-es = Elasticsearch(host=DOMAIN)
+
 
 # -- Set page config
 apptitle = 'Jobs for You'
