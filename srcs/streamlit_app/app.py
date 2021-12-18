@@ -8,7 +8,7 @@ sys.path.append('srcs')
 from streamlit_app import utils, templates
 
 INDEX = 'qp-name'
-DOMAIN = '0.0.0.0'
+DOMAIN = 'es'
 es = Elasticsearch(host=DOMAIN)
 
 # -- Set page config
@@ -23,10 +23,7 @@ st.set_page_config(
 ) #TODO page_icon and menu_items
 
 # Title the app
-logo_url = 'https://cdn3.vectorstock.com/i/1000x1000/50/27/job-search-recruitment-hiring-employment-vector-21795027.jpg'
-st.image(logo_url, width=100)
 st.title(apptitle)
-st.sidebar.title('Hello')
 
 # Define the education levels
 education_level_def = { 'Education Level':['Unable to read or write', 'No formal education', 'Primary Education Completed',
@@ -89,8 +86,12 @@ with get_education_expander:
     #education_form.text_input(label='If Other, please specify:')
     submit_education_form = education_form.form_submit_button("Submit")
 
-# if submit_education_form:
-#     st.sidebar.write("Education: %s"%education_level)
+if submit_education_form:
+    st.sidebar.header("{} {}".format(first_name, last_name))    
+    st.sidebar.subheader(email_address)
+    age = utils.calculateAge(birth_date)
+    st.sidebar.write("Age: {} years".format(age))
+    st.sidebar.write("Education: %s"%education_level)
 
 get_sector_expander = st.expander("Select the industry sector", expanded=False)
 with get_sector_expander:
@@ -100,8 +101,13 @@ with get_sector_expander:
         'Please select the sector you are interested to work in:', sector_def)
     submit_sector_form = sector_form.form_submit_button("Submit")
 
-# if submit_sector_form:
-#     st.sidebar.write("Sector:%s"%sector_selected)
+if submit_sector_form:
+    st.sidebar.header("{} {}".format(first_name, last_name))    
+    st.sidebar.subheader(email_address)
+    age = utils.calculateAge(birth_date)
+    st.sidebar.write("Age: {} years".format(age))
+    st.sidebar.write("Education: %s"%education_level)
+    st.sidebar.write("Sector:%s"%sector_selected)
 
 get_occupations_expander = st.expander("Check out these occupations", expanded=True)
 with get_occupations_expander:

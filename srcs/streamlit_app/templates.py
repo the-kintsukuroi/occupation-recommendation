@@ -1,5 +1,4 @@
 # srcs/streamlit_app/templates.py
-import urllib.parse
 
 def load_css() -> str:
     """ Return all css styles. """

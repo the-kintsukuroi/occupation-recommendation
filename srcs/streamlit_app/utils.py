@@ -2,7 +2,8 @@
 from elasticsearch import Elasticsearch
 from datetime import date
 
-es = Elasticsearch()
+DOMAIN = 'es'
+es = Elasticsearch(host=DOMAIN)
 
 def index_search(education_level, sector_selected):
     results = es.search(index="qp-name", 
