@@ -1,0 +1,15 @@
+,Education Level,Description
+0,Unable to read or write,please select this if the person cannot read or write
+1,No formal education,can read and write but do not have a formal education
+2,Primary Education Completed,cleared class 5
+3,Middle Education Completed,cleared class 8
+4,Secondary Education Completed,cleared class 10
+5,Higher Secondary Education Completed,cleared class 12
+6,Non-technical Diploma Completed,completed diploma in a non-technical field
+7,Technical Diploma Completed,completed diploma in a technical field
+8,ITI Cleared,completed Industrial Training Institute vocational course
+9,Non-STEM Graduate,"completed a Bachelor degree in a field other than Science, Technology, Engineering or Math"
+10,STEM Graduate,"completed a Bachelor degree in Science, Technology, Engineering or Math"
+11,Masters Completed,completed a Master degree in any field
+12,PhD Completed,completed a PhD degree in any field
+13,Other,Other

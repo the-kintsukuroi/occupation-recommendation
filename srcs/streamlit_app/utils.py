@@ -1,13 +1,20 @@
 # srcs/streamlit_app/utils.py
 from elasticsearch import Elasticsearch
+from datetime import date
+
 es = Elasticsearch()
 
 def index_search(education_level, sector_selected):
-    result = es.search(index="qp-name", 
+    results = es.search(index="qp-name", 
                     query = {"bool": {"must": [
                     {"match": {"Educational Qualification" : education_level}},
                     {"match": {"Sector" : sector_selected }},
                     ]
                 }})
-    print("Got %d Hits:" % result['hits']['total']['value'])
- 
+    return results
+
+# Python3 code to calculate age in years
+def calculateAge(birthDate):
+    days_in_year = 365.2425
+    age = int((date.today() - birthDate).days / days_in_year)
+    return age
