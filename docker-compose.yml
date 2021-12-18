@@ -2,7 +2,7 @@
 version: "3"
 services:
   es:
-    image: elasticsearch:7.11.2
+    image: elasticsearch:7.15.2
     container_name: es
     environment:
        - discovery.type=single-node
@@ -13,7 +13,7 @@ services:
 
   web:
     image: occupation-recommendation
-    container_name: search-app
+    container_name: recommendation-app
     depends_on:
       - es
     ports: 
